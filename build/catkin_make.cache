@@ -1,0 +1,2 @@
+my_robot
+-DCATKIN_DEVEL_PREFIX=/home/fachry/Code/udacity/chase_it/devel -DCMAKE_INSTALL_PREFIX=/home/fachry/Code/udacity/chase_it/install -G Unix Makefiles
