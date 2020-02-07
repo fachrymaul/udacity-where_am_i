@@ -17,6 +17,7 @@ bool handle_drive_request(ball_chaser::DriveToTarget::Request& req,
 
   motor_command_publisher.publish(motor_command);
   
+  return true;
 }
 
 int main(int argc, char** argv)
