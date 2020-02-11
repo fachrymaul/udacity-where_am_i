@@ -14,43 +14,59 @@ void drive_robot(float lin_x, float ang_z)
   {
     ROS_ERROR("Failed to call service");
   }
-  
+
 }
 
 void process_image_callback(const sensor_msgs::Image img)
 {
-  int white_pixel = 255;
-  const int TURN = 1;
-  const int MOVE = 5;
-  const int STOP = 0;
+  const int SCAN_START = img.data.size() / 3;
+  const int SCAN_END = img.data.size() * 2 / 3;
 
-  int white_count = 0;
+  const int WHITE_PIXEL = 255;
+  const float TURN = 1.5;
+  const float MOVE = 0.5;
+  const float STOP = 0;
 
-  for(int i = 0; i < img.step * img.height; i++)
+  int whiteCount = 0;
+  int xSum = 0;
+
+  for(int i = 0; i + 2 < img.data.size(); i+=3)
   {
-    if(img.data[i] == white_pixel)
+    int redChannel = img.data[i];
+    int blueChannel = img.data[i+1];
+    int greenChannel = img.data[i+2];
+
+    if(redChannel == WHITE_PIXEL && blueChannel == WHITE_PIXEL && greenChannel == WHITE_PIXEL)
     {
-      if(i % img.step < img.step / 3)
-      {
-        drive_robot(STOP, TURN);
-        return;
-      }
-      else if(i % img.step > img.step * 2 / 3)
-      {
-        drive_robot(STOP, -(TURN));
-        return;
-      }
-      else
-      {
-        drive_robot(MOVE, STOP);
-        return;
-      }
-      white_count++;
+      whiteCount++;
+      xSum += (i % (img.width * 3)) / 3;
     }
+
+
   }
-  if(white_count == 0)
+
+  if(whiteCount == 0)
   {
     drive_robot(STOP, STOP);
+  }
+  else
+  {
+    int xMean = xSum / whiteCount;
+    if(xMean < img.width / 3)
+    {
+      drive_robot(MOVE, TURN);
+      return;
+    }
+    else if(xMean > img.width * 2 / 3)
+    {
+      drive_robot(MOVE, -(TURN));
+      return;
+    }
+    else
+    {
+      drive_robot(MOVE, STOP);
+      return;
+    }
   }
 }
 
