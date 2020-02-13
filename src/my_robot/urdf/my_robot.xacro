@@ -4,6 +4,18 @@
 
   <xacro:include filename="$(find my_robot)/urdf/my_robot.gazebo"/>
 
+  <material name="orange">
+    <color rgba="1 0.64 0 1"/>
+  </material>
+  
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+
   <link name="robot_footprint"></link>
 
   <joint name="robot_footprint_joint" type="fixed">
@@ -37,6 +49,7 @@
       <geometry>
         <box size=".4 .2 .1"/>
       </geometry>
+      <material name="black"/>
     </visual>
 
 
@@ -52,6 +65,7 @@
       <geometry>
         <sphere radius="0.05"/>
       </geometry>
+      <material name="orange"/>
     </visual>
 
     <collision name='front_caster_collision'>
@@ -66,6 +80,7 @@
       <geometry>
         <sphere radius="0.05"/>
       </geometry>
+      <material name="white"/>
     </visual>
   </link>
 
@@ -92,6 +107,7 @@
       <geometry>
         <cylinder radius="0.1" length="0.05"/>
       </geometry>
+      <material name="orange"/>
     </visual>
   </link>
 
@@ -118,6 +134,7 @@
       <geometry>
         <cylinder radius="0.1" length="0.05"/>
       </geometry>
+      <material name="orange"/>
     </visual>
   </link>
 
@@ -162,6 +179,7 @@
       <geometry>
         <box size=".05 .05 .05"/>
       </geometry>
+      <material name="white"/>
     </visual>
 
   </link>
