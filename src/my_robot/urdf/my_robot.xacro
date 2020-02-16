@@ -16,6 +16,11 @@
     <color rgba="0 0 0 1"/>
   </material>
 
+  <material name="green">
+    <color rgba="0 1 0 1"/>
+  </material>
+
+
   <link name="robot_footprint"></link>
 
   <joint name="robot_footprint_joint" type="fixed">
@@ -23,6 +28,11 @@
     <parent link="robot_footprint"/>
     <child link="chassis" />
   </joint>
+
+
+  <gazebo reference='chassis'>
+    <material>Gazebo/Black</material>
+  </gazebo>
 
   <link name='chassis'>
     <pose>0 0 0.1 0 0 0</pose>
@@ -46,10 +56,10 @@
 
     <visual name='chassis_visual'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <material name="black"/>
       <geometry>
         <box size=".4 .2 .1"/>
       </geometry>
-      <material name="black"/>
     </visual>
 
 
@@ -84,7 +94,11 @@
     </visual>
   </link>
 
-  <link name="right_wheel">
+  <gazebo reference='right_wheel'>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+
+  <link name='right_wheel'>
     <inertial>
       <mass value="5"/>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
@@ -95,14 +109,14 @@
         />
     </inertial>
 
-    <collision name="righ_wheel_collision">
+    <collision name="right_wheel_collision">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder radius="0.1" length="0.05"/>
       </geometry>
     </collision>
 
-    <visual name="righ_wheel_visual">
+    <visual name="right_wheel_visual">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder radius="0.1" length="0.05"/>
@@ -111,7 +125,11 @@
     </visual>
   </link>
 
-  <link name="left_wheel">
+  <gazebo reference='left_wheel'>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+
+  <link name='left_wheel'>
     <inertial>
       <mass value="5"/>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
@@ -122,14 +140,14 @@
         />
     </inertial>
 
-    <collision name="righ_wheel_collision">
+    <collision name="left_wheel_collision">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder radius="0.1" length="0.05"/>
       </geometry>
     </collision>
 
-    <visual name="righ_wheel_visual">
+    <visual name="left_wheel_visual">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder radius="0.1" length="0.05"/>
@@ -156,6 +174,10 @@
     <dynamics damping="1.0" friction="1.0"/>
   </joint>
 
+  <gazebo reference='camera'>
+    <material>Gazebo/Green</material>
+  </gazebo>
+
   <link name="camera">
     <inertial>
       <mass value="0.1"/>
@@ -179,7 +201,7 @@
       <geometry>
         <box size=".05 .05 .05"/>
       </geometry>
-      <material name="white"/>
+      <material name="green"/>
     </visual>
 
   </link>
