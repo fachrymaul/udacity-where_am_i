@@ -1,8 +1,8 @@
-prefix=/home/fachry/Code/udacity/chase_it/devel
+prefix=/mnt/catkin-ws/udacity-where_am_i/devel
 
 Name: ball_chaser
 Description: Description of ball_chaser
 Version: 0.0.0
-Cflags: -I/home/fachry/Code/udacity/chase_it/devel/include
+Cflags: -I/mnt/catkin-ws/udacity-where_am_i/devel/include
 Libs: -L${prefix}/lib 
 Requires: 
