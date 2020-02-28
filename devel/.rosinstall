@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/fachry/Code/udacity/chase_it/devel/setup.sh
+    local-name: /mnt/catkin-ws/udacity-where_am_i/devel/setup.sh
